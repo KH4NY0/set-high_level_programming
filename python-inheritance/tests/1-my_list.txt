@@ -1,0 +1,77 @@
+The ``1-my_list`` module
+========================
+
+Using ``MyList``
+----------------
+
+Import the class:
+
+    >>> MyList = __import__('1-my_list').MyList
+
+``MyList`` inherits from ``list``, so it behaves like one:
+
+    >>> issubclass(MyList, list)
+    True
+
+An empty list prints as an empty list:
+
+    >>> MyList().print_sorted()
+    []
+
+Appending works exactly as it does on a plain list:
+
+    >>> my_list = MyList()
+    >>> my_list.append(1)
+    >>> my_list.append(4)
+    >>> my_list.append(2)
+    >>> my_list.append(3)
+    >>> my_list.append(5)
+    >>> print(my_list)
+    [1, 4, 2, 3, 5]
+
+``print_sorted`` prints a sorted copy:
+
+    >>> my_list.print_sorted()
+    [1, 2, 3, 4, 5]
+
+...and leaves the original list in its original order:
+
+    >>> print(my_list)
+    [1, 4, 2, 3, 5]
+
+A list can also be built directly from an iterable:
+
+    >>> MyList([7, 1, 9]).print_sorted()
+    [1, 7, 9]
+
+Negative numbers sort correctly:
+
+    >>> MyList([3, -4, 0, -1, 2]).print_sorted()
+    [-4, -1, 0, 2, 3]
+
+Already sorted lists are unchanged:
+
+    >>> MyList([1, 2, 3]).print_sorted()
+    [1, 2, 3]
+
+Duplicates are kept:
+
+    >>> MyList([2, 1, 2, 1]).print_sorted()
+    [1, 1, 2, 2]
+
+A single element:
+
+    >>> MyList([42]).print_sorted()
+    [42]
+
+``print_sorted`` takes no argument other than self:
+
+    >>> MyList([1, 2]).print_sorted(3)  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    TypeError
+
+It returns nothing:
+
+    >>> MyList([1, 2]).print_sorted() is None
+    [1, 2]
+    True

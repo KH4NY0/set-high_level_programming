@@ -1,0 +1,97 @@
+The ``7-base_geometry`` module
+==============================
+
+Using ``BaseGeometry``
+----------------------
+
+Import the class and build an instance:
+
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+    >>> bg = BaseGeometry()
+
+``area()``
+----------
+
+``area()`` is not implemented at this level, so it always raises:
+
+    >>> bg.area()
+    Traceback (most recent call last):
+    Exception: area() is not implemented
+
+It takes no argument other than self:
+
+    >>> bg.area(5)  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    TypeError
+
+``integer_validator()``
+-----------------------
+
+A positive integer passes silently:
+
+    >>> bg.integer_validator("my_int", 12)
+    >>> bg.integer_validator("width", 89)
+
+A string is rejected:
+
+    >>> bg.integer_validator("name", "John")
+    Traceback (most recent call last):
+    TypeError: name must be an integer
+
+So is a float, even a whole one:
+
+    >>> bg.integer_validator("size", 4.0)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+And so is a bool, even though bool inherits from int:
+
+    >>> bg.integer_validator("flag", True)
+    Traceback (most recent call last):
+    TypeError: flag must be an integer
+
+As are None, lists, tuples, dicts and sets:
+
+    >>> bg.integer_validator("nothing", None)
+    Traceback (most recent call last):
+    TypeError: nothing must be an integer
+
+    >>> bg.integer_validator("a_list", [4])
+    Traceback (most recent call last):
+    TypeError: a_list must be an integer
+
+    >>> bg.integer_validator("a_tuple", (4,))
+    Traceback (most recent call last):
+    TypeError: a_tuple must be an integer
+
+    >>> bg.integer_validator("a_dict", {"a": 4})
+    Traceback (most recent call last):
+    TypeError: a_dict must be an integer
+
+Zero is an integer, but not a positive one:
+
+    >>> bg.integer_validator("age", 0)
+    Traceback (most recent call last):
+    ValueError: age must be greater than 0
+
+Neither is a negative number:
+
+    >>> bg.integer_validator("distance", -4)
+    Traceback (most recent call last):
+    ValueError: distance must be greater than 0
+
+The type check happens before the value check:
+
+    >>> bg.integer_validator("both_wrong", "-4")
+    Traceback (most recent call last):
+    TypeError: both_wrong must be an integer
+
+Both arguments are required:
+
+    >>> bg.integer_validator("only_name")  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    TypeError
+
+    >>> bg.integer_validator()  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    TypeError
