@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+add_item.json
+my_list.json
+my_dict.json
+my_set.json
+my_first_file.txt
+file_append.txt
+student.json
