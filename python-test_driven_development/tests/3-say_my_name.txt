@@ -1,0 +1,68 @@
+The ``3-say_my_name`` module
+============================
+
+Using ``say_my_name``
+---------------------
+
+Import the function from the module:
+
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Printing a first and a last name:
+
+    >>> say_my_name("John", "Smith")
+    My name is John Smith
+
+    >>> say_my_name("Walter", "White")
+    My name is Walter White
+
+The last name defaults to an empty string, leaving a trailing space:
+
+    >>> say_my_name("Bob")  # doctest: +NORMALIZE_WHITESPACE
+    My name is Bob
+
+Empty strings are valid:
+
+    >>> say_my_name("", "")  # doctest: +NORMALIZE_WHITESPACE
+    My name is
+
+Numbers inside a string are fine:
+
+    >>> say_my_name("Agent", "007")
+    My name is Agent 007
+
+A non-string first name raises a TypeError:
+
+    >>> say_my_name(12, "White")
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+    >>> say_my_name(None, "White")
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+    >>> say_my_name(["John"], "Smith")
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+A non-string last name raises a TypeError:
+
+    >>> say_my_name("John", 12)
+    Traceback (most recent call last):
+    TypeError: last_name must be a string
+
+    >>> say_my_name("John", None)
+    Traceback (most recent call last):
+    TypeError: last_name must be a string
+
+The first name is validated before the last name:
+
+    >>> say_my_name(12, 13)
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+Calling the function with no arguments raises a TypeError:
+
+    >>> say_my_name()
+    Traceback (most recent call last):
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'

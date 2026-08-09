@@ -1,0 +1,86 @@
+The ``4-print_square`` module
+=============================
+
+Using ``print_square``
+----------------------
+
+Import the function from the module:
+
+    >>> print_square = __import__('4-print_square').print_square
+
+Printing a square of size 4:
+
+    >>> print_square(4)
+    ####
+    ####
+    ####
+    ####
+
+Printing a square of size 1:
+
+    >>> print_square(1)
+    #
+
+Printing a square of size 0 prints nothing:
+
+    >>> print_square(0)
+
+Printing a square of size 10:
+
+    >>> print_square(10)
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+
+A non-integer size raises a TypeError:
+
+    >>> print_square("4")
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+    >>> print_square(None)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+    >>> print_square([4])
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+A float size raises a TypeError, even when it is negative:
+
+    >>> print_square(4.5)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+    >>> print_square(-4.5)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+A negative integer raises a ValueError:
+
+    >>> print_square(-1)
+    Traceback (most recent call last):
+    ValueError: size must be >= 0
+
+    >>> print_square(-10)
+    Traceback (most recent call last):
+    ValueError: size must be >= 0
+
+The type is checked before the value:
+
+    >>> print_square("-1")
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+Calling the function with no argument raises a TypeError:
+
+    >>> print_square()
+    Traceback (most recent call last):
+    TypeError: print_square() missing 1 required positional argument: 'size'
